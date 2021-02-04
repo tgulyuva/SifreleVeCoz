@@ -15,8 +15,10 @@ namespace SifreleVeCoz
                 "a", "b", "c", "ç", "d", "e", "f", "g", "ğ", "h", "i", "ı", "j", "k", "l", "m", "n", "o", "ö", "p", "q", "r", "s", "ş", "t", "u", "ü", "v", "w", "x", "y", "z"
             };
             SifreleMetodu(alfabe);
+            CozMethodu(alfabe);
+            Console.ReadLine();
         }
-
+        
         private static void SifreleMetodu(List<string> alfabe)
         {
             Console.WriteLine("Sifrelemek istenen kelimeyi yazınız:");
@@ -33,13 +35,40 @@ namespace SifreleVeCoz
                 }
                 else
                 {
-                    result += result.TrimEnd('-');
+                   result= result.TrimEnd('-');
                     result += "+";
                 }
             }
 
             Console.WriteLine(result.TrimEnd('-'));
             Console.ReadLine();
+        }
+
+        private static void CozMethodu(List<string> alfabe)
+        {
+            Console.WriteLine("Çözmek istediğiniz şifreyi girin.");
+            string cumle = Console.ReadLine();
+            
+            string result = "";
+            string[] kelime = cumle.Split('+');
+           
+
+            foreach (var item  in kelime)
+            {
+                string[] words = item.Split('-');
+
+                foreach (var harf  in words)
+                {
+                  result += alfabe[Int32.Parse(harf.ToString())];
+                    
+                }
+
+                result += " ";
+
+            }
+            
+            Console.WriteLine(result);
+
         }
     }
 }
